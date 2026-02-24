@@ -71,12 +71,6 @@ def calculate_avg_price_by_neighbourhood_group_and_room(listings):
         d[pairs] = d.get(pairs) / d_count[pairs]
     return d
 
-        
-
-
-
-
-
 ###############################################################################
 ##### TASK 3: CSV WRITER
 ###############################################################################
@@ -95,7 +89,12 @@ def write_summary_csv(out_filename, avg_prices):
         None
             Writes a CSV file with header: neighbourhood_group, room_type, average_price
     """
-    pass
+    with open(out_filename, "w") as out:
+        out.write("neighbourhood_group,room_type,average_price\n")
+        for pairs, avg in avg_prices.items():
+            neighbourhood_group, room_type = pairs
+            out.write(f"{neighbourhood_group},{room_type},{avg}\n" )
+
 
 ###############################################################################
 ##### UNIT TESTS (Do not modify the code below!)
