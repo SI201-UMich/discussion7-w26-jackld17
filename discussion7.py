@@ -67,6 +67,7 @@ def calculate_avg_price_by_neighbourhood_group_and_room(listings):
         price = float(listing["price"])
         d[pair] = d.get(pair, 0) + price
         d_count[pair] = d_count.get(pair, 0) + 1
+    #divide totals by count
     for pairs in d.keys():
         d[pairs] = d.get(pairs) / d_count[pairs]
     return d
@@ -89,6 +90,7 @@ def write_summary_csv(out_filename, avg_prices):
         None
             Writes a CSV file with header: neighbourhood_group, room_type, average_price
     """
+    #no space after commas (remember)
     with open(out_filename, "w") as out:
         out.write("neighbourhood_group,room_type,average_price\n")
         for pairs, avg in avg_prices.items():
